@@ -1,0 +1,132 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3894,        122]
+NotebookOptionsPosition[      3094,        101]
+NotebookOutlinePosition[      3537,        118]
+CellTagsIndexPosition[      3494,        115]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"f", "[", 
+   RowBox[{"{", 
+    RowBox[{"x_", ",", "y_"}], "}"}], "]"}], ":=", " ", 
+  RowBox[{
+   RowBox[{"x", "^", "4"}], " ", "+", 
+   RowBox[{"y", "^", "4"}], " ", "-", 
+   RowBox[{"2", "x"}], "+", 
+   RowBox[{"3", "y"}], " ", "-", "1"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"g", "[", 
+    RowBox[{"x_", ",", "y_", ",", "z_"}], "]"}], ":=", " ", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"x", ",", "y"}], "}"}], "-", 
+    RowBox[{"L", "*", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"4", 
+         SuperscriptBox["x", "3"]}], " ", "-", " ", "2"}], ",", " ", 
+       RowBox[{
+        RowBox[{"2", "y"}], " ", "+", "3"}]}], "}"}]}]}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"a", ",", "b"}], "}"}], "=", 
+  RowBox[{"{", 
+   RowBox[{"0.1", ",", 
+    RowBox[{"-", "0.3"}]}], "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"A", " ", "=", " ", 
+   RowBox[{"FindMinimum", "[", 
+    RowBox[{
+     RowBox[{"f", "[", 
+      RowBox[{"g", "[", 
+       RowBox[{"a", ",", "b", ",", "L"}], "]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"L", ",", "0"}], "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", 
+  RowBox[{"A", "[", " ", 
+   RowBox[{"[", "1", "]"}], "]"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"L", "/", 
+   RowBox[{"A", " ", "[", 
+    RowBox[{"[", 
+     RowBox[{"2", ",", "1"}], "]"}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", "L"}], "Input",
+ CellChangeTimes->{{3.9263617545761986`*^9, 3.9263619973224716`*^9}, 
+   3.926362630337307*^9},ExpressionUUID->"a872ad8e-b7aa-754e-99d9-\
+527c627934d7"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.1`", ",", 
+   RowBox[{"-", "0.3`"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.9263620584930096`*^9},
+ CellLabel->"Out[3]=",ExpressionUUID->"a775058e-191b-9543-8430-21b770a4ecf7"],
+
+Cell[BoxData[
+ RowBox[{"-", "4.152729977299841`"}]], "Print",
+ CellChangeTimes->{3.926362058517004*^9},
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"6a9efa0a-8609-3b4b-8a72-1e30742b1909"],
+
+Cell[BoxData[
+ FractionBox["L", 
+  RowBox[{"L", "\[Rule]", "0.28106988633705127`"}]]], "Output",
+ CellChangeTimes->{3.926362058517996*^9},
+ CellLabel->"Out[6]=",ExpressionUUID->"b6c56839-79eb-8e49-a940-5e801cb39f4e"],
+
+Cell[BoxData["L"], "Output",
+ CellChangeTimes->{3.926362058521015*^9},
+ CellLabel->"Out[7]=",ExpressionUUID->"d58bb044-e890-8d40-bcae-b29116e7cbf4"]
+}, Open  ]]
+},
+WindowSize->{571.8, 509.4},
+WindowMargins->{{251.39999999999998`, Automatic}, {
+  11.399999999999977`, Automatic}},
+FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"571cb4ff-218e-684e-8d20-3afa4b1f62e6"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1695, 52, 216, "Input",ExpressionUUID->"a872ad8e-b7aa-754e-99d9-527c627934d7"],
+Cell[2278, 76, 220, 5, 32, "Output",ExpressionUUID->"a775058e-191b-9543-8430-21b770a4ecf7"],
+Cell[2501, 83, 207, 5, 22, "Print",ExpressionUUID->"6a9efa0a-8609-3b4b-8a72-1e30742b1909"],
+Cell[2711, 90, 216, 4, 48, "Output",ExpressionUUID->"b6c56839-79eb-8e49-a940-5e801cb39f4e"],
+Cell[2930, 96, 148, 2, 32, "Output",ExpressionUUID->"d58bb044-e890-8d40-bcae-b29116e7cbf4"]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+

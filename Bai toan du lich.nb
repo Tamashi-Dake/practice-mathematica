@@ -1,0 +1,289 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     10592,        281]
+NotebookOptionsPosition[      9974,        261]
+NotebookOutlinePosition[     10383,        277]
+CellTagsIndexPosition[     10340,        274]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Ma", " ", "tr\:1eadn", " ", "kho\:1ea3ng", " ", "c\[AAcute]ch", " ", 
+    "ban", " ", "\:0111\:1ea7u"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"distanceMatrix", "=", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"Infinity", ",", "8", ",", "11", ",", "12", ",", "10"}], 
+        "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"8", ",", "Infinity", ",", "12", ",", "7", ",", "9"}], "}"}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"11", ",", "12", ",", "Infinity", ",", "11", ",", "5"}], 
+        "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"12", ",", "7", ",", "11", ",", "Infinity", ",", "9"}], "}"}],
+        ",", "\[IndentingNewLine]", 
+       RowBox[{"{", 
+        RowBox[{"10", ",", "9", ",", "5", ",", "9", ",", "Infinity"}], 
+        "}"}]}], "\[IndentingNewLine]", "}"}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "H\[AGrave]m", " ", "\:0111\:1ec3", " ", "t\[IAcute]nh", " ", "t\:1ed5ng",
+      " ", "chi", " ", "ph\[IAcute]"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"totalCost", "[", 
+      RowBox[{"path_", ",", "distMatrix_"}], "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"cost", "=", "0"}], "}"}], ",", 
+       RowBox[{
+        RowBox[{"Do", "[", 
+         RowBox[{
+          RowBox[{"cost", "+=", 
+           RowBox[{"distMatrix", "[", 
+            RowBox[{"[", 
+             RowBox[{
+              RowBox[{"path", "[", 
+               RowBox[{"[", "i", "]"}], "]"}], ",", 
+              RowBox[{"path", "[", 
+               RowBox[{"[", 
+                RowBox[{"i", "+", "1"}], "]"}], "]"}]}], "]"}], "]"}]}], ",", 
+          RowBox[{"{", 
+           RowBox[{"i", ",", 
+            RowBox[{
+             RowBox[{"Length", "[", "path", "]"}], "-", "1"}]}], "}"}]}], 
+         "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"cost", "+=", 
+         RowBox[{"distMatrix", "[", 
+          RowBox[{"[", 
+           RowBox[{
+            RowBox[{"Last", "[", "path", "]"}], ",", 
+            RowBox[{"First", "[", "path", "]"}]}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "cost"}]}], "]"}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"H\[AGrave]m", " ", "Branch", " ", "and", " ", "Bound"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"branchAndBound", "[", "distMatrix_", "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"n", "=", 
+          RowBox[{"Length", "[", "distMatrix", "]"}]}], ",", 
+         RowBox[{"bestCost", "=", "Infinity"}], ",", "bestPath", ",", 
+         RowBox[{"queue", "=", 
+          RowBox[{"{", 
+           RowBox[{"{", 
+            RowBox[{"0", ",", "1", ",", 
+             RowBox[{"{", "1", "}"}], ",", 
+             RowBox[{"Range", "[", 
+              RowBox[{"2", ",", 
+               RowBox[{"Length", "[", "distMatrix", "]"}]}], "]"}]}], "}"}], 
+           "}"}]}]}], "}"}], ",", 
+       RowBox[{
+        RowBox[{"While", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Length", "[", "queue", "]"}], ">", "0"}], ",", 
+          RowBox[{"(*", 
+           RowBox[{
+           "Pop", " ", "the", " ", "first", " ", "node", " ", "from", " ", 
+            "the", " ", "queue"}], "*)"}], 
+          RowBox[{
+           RowBox[{
+            RowBox[{"{", 
+             RowBox[{
+             "currentCost", ",", "currentNode", ",", "currentPath", ",", 
+              "remainingNodes"}], "}"}], "=", 
+            RowBox[{"First", "[", "queue", "]"}]}], ";", 
+           "\[IndentingNewLine]", 
+           RowBox[{"queue", "=", 
+            RowBox[{"Rest", "[", "queue", "]"}]}], ";", "\[IndentingNewLine]", 
+           RowBox[{"(*", 
+            RowBox[{"Generate", " ", "all", " ", "children", " ", "nodes"}], 
+            "*)"}], 
+           RowBox[{"Do", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"nextNode", "=", 
+               RowBox[{"remainingNodes", "[", 
+                RowBox[{"[", "i", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+              RowBox[{"newPath", "=", 
+               RowBox[{"Append", "[", 
+                RowBox[{"currentPath", ",", "nextNode"}], "]"}]}], ";", 
+              "\[IndentingNewLine]", 
+              RowBox[{"newCost", "=", 
+               RowBox[{"currentCost", "+", 
+                RowBox[{"distMatrix", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"currentNode", ",", "nextNode"}], "]"}], "]"}]}]}], 
+              ";", "\[IndentingNewLine]", 
+              RowBox[{"(*", 
+               RowBox[{
+                RowBox[{"If", " ", 
+                 RowBox[{"it", "'"}], "s", " ", "a", " ", "complete", " ", 
+                 "tour"}], ",", 
+                RowBox[{"check", " ", "if", " ", 
+                 RowBox[{"it", "'"}], "s", " ", "the", " ", "best"}]}], 
+               "*)"}], 
+              RowBox[{"If", "[", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"Length", "[", "newPath", "]"}], "==", "n"}], ",", 
+                RowBox[{
+                 RowBox[{"completeCost", "=", 
+                  RowBox[{"newCost", "+", 
+                   RowBox[{"distMatrix", "[", 
+                    RowBox[{"[", 
+                    RowBox[{"nextNode", ",", 
+                    RowBox[{"First", "[", "newPath", "]"}]}], "]"}], 
+                    "]"}]}]}], ";", "\[IndentingNewLine]", 
+                 RowBox[{"If", "[", 
+                  RowBox[{
+                   RowBox[{"completeCost", "<", "bestCost"}], ",", 
+                   RowBox[{
+                    RowBox[{"bestCost", "=", "completeCost"}], ";", 
+                    "\[IndentingNewLine]", 
+                    RowBox[{"bestPath", "=", "newPath"}], ";"}]}], "]"}]}], 
+                ",", 
+                RowBox[{"(*", 
+                 RowBox[{
+                  RowBox[{"If", " ", 
+                   RowBox[{"it", "'"}], "s", " ", "not", " ", "a", " ", 
+                   "complete", " ", "tour"}], ",", 
+                  RowBox[{
+                  "add", " ", "it", " ", "to", " ", "the", " ", "queue"}]}], 
+                 "*)"}], 
+                RowBox[{
+                 RowBox[{"remaining", "=", 
+                  RowBox[{"Delete", "[", 
+                   RowBox[{"remainingNodes", ",", "i"}], "]"}]}], ";", 
+                 "\[IndentingNewLine]", 
+                 RowBox[{"queue", "=", 
+                  RowBox[{"Append", "[", 
+                   RowBox[{"queue", ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    "newCost", ",", "nextNode", ",", "newPath", ",", 
+                    "remaining"}], "}"}]}], "]"}]}], ";"}]}], "]"}]}], ",", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", 
+               RowBox[{"Length", "[", "remainingNodes", "]"}]}], "}"}]}], 
+            "]"}], ";"}]}], "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"{", 
+         RowBox[{"bestPath", ",", "bestCost"}], "}"}]}]}], "]"}]}], ";"}], 
+   "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "T\[IGrave]m", " ", "\:0111\:01b0\:1eddng", " ", "\:0111i", " ", 
+     "t\:1ed1i", " ", "\:01b0u", " ", "v\[AGrave]", " ", "chi", " ", 
+     "ph\[IAcute]"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"optimalPath", ",", "optimalCost"}], "}"}], "=", 
+     RowBox[{"branchAndBound", "[", "distanceMatrix", "]"}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Hi\:1ec3n", " ", "th\:1ecb", " ", "k\:1ebft", " ", "qu\:1ea3"}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<\:0110\:01b0\:1eddng \:0111i t\:1ed1i \:01b0u: \>\"", ",", 
+      "optimalPath"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{
+     "\"\<Chi ph\[IAcute] t\:1ed1i \:01b0u: \>\"", ",", "optimalCost"}], 
+     "]"}], ";"}], "\n"}]}]], "Input",
+ CellChangeTimes->{{3.928039817353737*^9, 3.928039817354744*^9}, {
+  3.9280399528265896`*^9, 3.928040129089037*^9}, {3.9281788546152134`*^9, 
+  3.928178898310444*^9}},
+ CellLabel->"In[66]:=",ExpressionUUID->"298b2e58-60c9-834d-bfec-9a59b7dbab63"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"\:0110\:01b0\:1eddng \:0111i t\:1ed1i \:01b0u: \"\>", 
+   "\[InvisibleSpace]", 
+   RowBox[{"{", 
+    RowBox[{"1", ",", "2", ",", "4", ",", "5", ",", "3"}], "}"}]}],
+  SequenceForm[
+  "\:0110\:01b0\:1eddng \:0111i t\:1ed1i \:01b0u: ", {1, 2, 4, 5, 3}],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9280398191762657`*^9, 3.928040131904007*^9, 
+  3.928178903838152*^9},
+ CellLabel->
+  "During evaluation of \
+In[66]:=",ExpressionUUID->"49ff37d3-d779-6446-8461-dab2e26f34f0"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Chi ph\[IAcute] t\:1ed1i \:01b0u: \"\>", "\[InvisibleSpace]", 
+   "40"}],
+  SequenceForm["Chi ph\[IAcute] t\:1ed1i \:01b0u: ", 40],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.9280398191762657`*^9, 3.928040131904007*^9, 
+  3.928178903841057*^9},
+ CellLabel->
+  "During evaluation of \
+In[66]:=",ExpressionUUID->"0c5633ec-0f08-0943-87d8-33ebf9cb2044"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{571.8, 509.4},
+WindowMargins->{{284.4, Automatic}, {12, Automatic}},
+FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"ac1c6af6-9635-5741-8634-b2d1c87536ca"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 8406, 206, 1317, "Input",ExpressionUUID->"298b2e58-60c9-834d-bfec-9a59b7dbab63"],
+Cell[CellGroupData[{
+Cell[9011, 232, 526, 13, 22, "Print",ExpressionUUID->"49ff37d3-d779-6446-8461-dab2e26f34f0"],
+Cell[9540, 247, 406, 10, 22, "Print",ExpressionUUID->"0c5633ec-0f08-0943-87d8-33ebf9cb2044"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
